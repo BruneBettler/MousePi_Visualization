@@ -107,7 +107,6 @@ def get_capture_time(image):
 
     return ms_time
 
-#Test
 
 '''
 Function returns the start and stop times of the 142 ms range in which the capture time is contained 
