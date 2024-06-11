@@ -1,0 +1,27 @@
+{
+    "00110": "Session Start",
+    "11110": "Session End",
+    "01010": "Trial Start",
+    "10101": "Trial End",
+
+    "01000": "Open Valve",
+    "11010": "Lick Occurred",
+    "01110": "Lick Occurred During Reset Time or Sample Period",
+
+    "10010": "Go Lick",
+    "00011": "No Go Lick",
+    "10000": "Go Miss",
+    "00000": "No Go Pass",
+
+    "00111": "End of ITT",
+
+    "11001": "Start of Image Display",
+    "01001": "End of Image Display",
+    "01100": "Start of Lick Window",
+    "11101": "End of Lick Window",
+
+    "00100": "Start of Gray Background Display",
+    "00010": "Stimulus Information",
+    "11111": "Screen Side: "
+}
+
