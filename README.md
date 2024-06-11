@@ -2,7 +2,6 @@
 This repository contains code for visualizing .log and image/video files from the MousePi behavioral rig. 
 
 ## Table of Contents
-- [Installation](#installation)
 - [Files and Modules](#files-and-modules)
   - [data_loader.py](#data_loaderpy)
   - [log_docu_dict.json](#log_docu_dictjson)
@@ -11,10 +10,7 @@ This repository contains code for visualizing .log and image/video files from th
   - [run.py](#runpy)
   - [utils.py](#utilspy)
   - [video_processing.py](#video_processingpy)
-
-## Installation
-Instructions for installing necessary dependencies and setting up the environment.
-
+  
 ## Files and Modules
 
 ### log_docu_dict.json
@@ -69,8 +65,6 @@ This module provides functions to visualize data from multiple mice over multipl
 - `graph_hit_slope_heat`
 - `graph_Itrials_slope_heat`
 - `graph_all_MultiMice`: Graphs all four above graphs in a single image.
-
-#---------TODO: CONTINUE HERE AND LINK HEADERS IN TOC above.---------------
 
 ### run.py
 This script contains and runs the main pipelines for graphing desired mouse and session data.
