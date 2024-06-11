@@ -73,6 +73,7 @@ Important and variable variables are stored in the params dictionary at the top 
 #### Functions:
 - `main()`: The main function calls the desired pipeline and allows the code to run.
 - `pipeline_0()`: Runs for all desired mice: the 3 graph summary image for each session and a GoNoGo graph for each session. For all mice and all sessions, a summary multi-graph is made as well. All graphs are saved and the last created/saved image is logged by a printed statement containing the time of completion in order to track progress. 
+- `add_new_session()`: Runs all graphing for all mice in a single session (summary session per mouse and GoNoGo graph per mouse). Also creates an updated multimouse_multisession graph.
 
 ### log_analysis.py
 This script contains all functions used for debugging / further analyzing the .log files.
