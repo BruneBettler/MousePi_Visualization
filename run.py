@@ -42,6 +42,7 @@ def pipeline_0():
     return 0
 
 def add_new_session():
+    session_date = params['path_to_session'][-5:]
     mice_data = []
     for mouse_n, mouse in enumerate(params['mice_to_analyze']):
         for _, _, files in os.walk(params['path_to_session']):
@@ -52,10 +53,10 @@ def add_new_session():
 
         mouse_data = single_day_data(path=file)
         mice_data.append(mouse_data)
-        graph_all_singleMouse(mouse_data, f"{params['mice_to_analyze'][mouse_n]}_Single_Day_Analysis_{params['session_numbers'][mouse_n]}", params['phase'], params['session_numbers'][mouse_n], 15, save_path=params['path_to_all'])
-        print( f"{datetime.now()}: graph_all_singleMouse for {mouse}, session: {params['session_numbers'][mouse_n]} is DONE!")
-        goNogo_lick_analysis_single_mouse(mouse_data, f"{mouse}_Single_Day_Analysis_{params['session_numbers'][mouse_n]}", params['phase'], params['session_numbers'][mouse_n], save_path=params['path_to_all'])
-        print(f"{datetime.now()}:graph_GOnoGO for {mouse}, session: {params['session_numbers'][mouse_n]} is DONE!")
+        graph_all_singleMouse(mouse_data, f"{params['mice_to_analyze'][mouse_n]}_Single_Day_Analysis_{session_date}", params['phase'], params['session_numbers'][mouse_n], 15, save_path=params['path_to_all'])
+        print( f"{datetime.now()}: graph_all_singleMouse for {mouse}, session: {session_date} is DONE!")
+        goNogo_lick_analysis_single_mouse(mouse_data, f"{mouse}_Single_Day_Analysis_{session_date}", params['phase'], params['session_numbers'][mouse_n], save_path=params['path_to_all'])
+        print(f"{datetime.now()}:graph_GOnoGO for {mouse}, session: {session_date} is DONE!")
 
     graph_all_MultiMice(mice_data, params['mice_to_analyze'], params['phase'], save_path=params['path_to_all'])
     print(f"{datetime.now()}: graph_all_MultiMouse for {params['mice_to_analyze']} is DONE!")
