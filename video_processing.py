@@ -3,6 +3,7 @@ from data_loader import *
 import json
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
+from tqdm import tqdm
 
 with open('log_docu_dict.json', 'r') as file:
     log_docu_dict = json.load(file)
@@ -25,7 +26,7 @@ def im_to_vid(imFolder_path, vid_path):
 
     video = cv2.VideoWriter(vid_path, 0, 7, (width, height))
 
-    for image in images:
+    for i,image in tqdm(enumerate(images)):
         video.write(cv2.imread(os.path.join(imFolder_path, image)))
 
     cv2.destroyAllWindows()
@@ -49,7 +50,7 @@ def add_subtitles(imFolder_path, log_file_data, rewrite=False, save_vid=False, v
     next_start_lower_range = np.inf
     GNG_text = ' '
 
-    for n, im in enumerate(images):
+    for n, im in tqdm(enumerate(images)):
         # retrieve the time the im was captured (in ms)
         snap_time_ms = get_capture_time(im)
         # identify the 142 ms range in which it is contained (71ms in either direction)
@@ -197,7 +198,7 @@ def write_subtitle(im_path, subtitle, background_color, GNG_text):
     image = Image.open(im_path)
     draw = ImageDraw.Draw(image)
     width, height = image.size
-    font = ImageFont.truetype('/Library/Fonts/Arial Unicode.ttf', 26)
+    font = ImageFont.truetype(r'C:\Users\mlouki1\Downloads\Arial-Unicode-Regular.ttf', 26)
     text_color = (255,255,255)
 
     # Calculate the bounding box of the text and the subtitle bar height
@@ -309,13 +310,14 @@ def update_trial_phase(curr_phase, current_event, GNG):
 
 if __name__ == '__main__':
     #imFolder_path = 'Data/Video/05-22/BVTEST_SP2_05_22_2024_15_25_29_05_22_2024_15_25_29'
-    imFolder_path = '/Volumes/MATT_0/MousePi Data/FANNY_SP2_05_27_2024_13_44_58_05_27_2024_13_44_58'
+    imFolder_path = r'D:\MousePi Data\Mouse Videos\Image Folders\Phase_1\FANNY_SP2_06_12_2024_15_26_07_06_12_2024_15_26_07'
     #video_path = 'Data/Video/05-22/BVTEST_MAY_22_0_Subtitled'
     #log_data = single_day_data([1,'05-22','BVTEST'])
-    log_data = single_day_data(path='/Volumes/MATT_0/MousePi Data/Phase_1/05-27/FANNY_SP2_05_27_2024_13_44_58.log')
+    log_data = single_day_data(path=r'C:\Users\mlouki1\Desktop\DATA (D)\Lab Work\Trenholm Lab\Graphs\Pilot_5\Phase 1\06-12\FANNY_SP2_06_12_2024_15_26_07.log')
 
     #im_to_vid(imFolder_path, video_path)
     add_subtitles(imFolder_path, log_data)
 
+    # im_to_vid(imFolder_path=imFolder_path,vid_path=imFolder_path+'\video')
     #subtitle = 'Here is a very long string of text in order to test how the subtitle is working out. I want to make sure that the line properly splits in two.'
     #write_subtitle('/Users/brune/PycharmProjects/Trenholm_Mice/behavior/Data/Video/05-22/BVTEST_SP2_05_22_2024_15_25_29_05_22_2024_15_25_29_MODIFIED/SUBTITLED_2024-05-22-15-25-52-156290_Frame_1.jpg', subtitle, (155, 135, 12), "No Go")
