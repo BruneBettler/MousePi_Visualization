@@ -310,10 +310,10 @@ def update_trial_phase(curr_phase, current_event, GNG):
 
 if __name__ == '__main__':
     #imFolder_path = 'Data/Video/05-22/BVTEST_SP2_05_22_2024_15_25_29_05_22_2024_15_25_29'
-    imFolder_path = r'D:\MousePi Data\Mouse Videos\Image Folders\Phase_1\FANNY_SP2_06_12_2024_15_26_07_06_12_2024_15_26_07'
+    imFolder_path = r"D:\MousePi Data\Mouse Videos\Image Folders\Phase_1\FANNY_SP2_06_13_2024_16_06_25_06_13_2024_16_06_25"
     #video_path = 'Data/Video/05-22/BVTEST_MAY_22_0_Subtitled'
     #log_data = single_day_data([1,'05-22','BVTEST'])
-    log_data = single_day_data(path=r'C:\Users\mlouki1\Desktop\DATA (D)\Lab Work\Trenholm Lab\Graphs\Pilot_5\Phase 1\06-12\FANNY_SP2_06_12_2024_15_26_07.log')
+    log_data = single_day_data(path=r"C:\Users\mlouki1\Desktop\DATA (D)\Lab Work\Trenholm Lab\Graphs\Pilot_5\Phase 1\06-13\FANNY_SP2_06_13_2024_16_06_25.log")
 
     #im_to_vid(imFolder_path, video_path)
     add_subtitles(imFolder_path, log_data)
