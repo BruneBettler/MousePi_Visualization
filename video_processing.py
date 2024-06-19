@@ -4,6 +4,7 @@ import json
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 from tqdm import tqdm
+import os
 
 with open('log_docu_dict.json', 'r') as file:
     log_docu_dict = json.load(file)
@@ -13,21 +14,17 @@ Function converts a folder of images into a video
 The video is saved and the images are kept
 '''
 def im_to_vid(imFolder_path, vid_path):
-    if vid_path[-4:] != '.avi':
-        vid_path += '.avi'
+    image_folder = imFolder_path
+    video_name = vid_path
 
-    if imFolder_path[-1] == '/':
-        imFolder_path = imFolder_path[:-1]
-
-    images = [img for img in os.listdir(imFolder_path) if img.endswith(".jpg")]
-    images.sort()
-    frame = cv2.imread(os.path.join(imFolder_path, images[0]))
+    images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
+    frame = cv2.imread(os.path.join(image_folder, images[0]))
     height, width, layers = frame.shape
 
-    video = cv2.VideoWriter(vid_path, 0, 7, (width, height))
+    video = cv2.VideoWriter(video_name, 0, 7, (width,height))
 
     for i,image in tqdm(enumerate(images)):
-        video.write(cv2.imread(os.path.join(imFolder_path, image)))
+        video.write(cv2.imread(os.path.join(image_folder, image)))
 
     cv2.destroyAllWindows()
     video.release()
@@ -310,14 +307,14 @@ def update_trial_phase(curr_phase, current_event, GNG):
 
 if __name__ == '__main__':
     #imFolder_path = 'Data/Video/05-22/BVTEST_SP2_05_22_2024_15_25_29_05_22_2024_15_25_29'
-    imFolder_path = r"D:\MousePi Data\Mouse Videos\Image Folders\Phase_1\FANNY_SP2_06_13_2024_16_06_25_06_13_2024_16_06_25"
-    #video_path = 'Data/Video/05-22/BVTEST_MAY_22_0_Subtitled'
+    imFolder_path = r"D:\MousePi Data\Mouse Videos\Image Folders\Phase_1\FANNY_SP2_06_17_2024_13_58_11_06_17_2024_13_58_11"
+    video_path = 'Data/Video/05-22/BVTEST_MAY_22_0_Subtitled'
     #log_data = single_day_data([1,'05-22','BVTEST'])
-    log_data = single_day_data(path=r"C:\Users\mlouki1\Desktop\DATA (D)\Lab Work\Trenholm Lab\Graphs\Pilot_5\Phase 1\06-13\FANNY_SP2_06_13_2024_16_06_25.log")
+    log_data = single_day_data(path=r"C:\Users\mlouki1\Desktop\DATA (D)\Lab Work\Trenholm Lab\Graphs\Pilot_5\Phase 1\06-17\FANNY_SP2_06_17_2024_13_58_11.log")
 
     #im_to_vid(imFolder_path, video_path)
     add_subtitles(imFolder_path, log_data)
 
-    # im_to_vid(imFolder_path=imFolder_path,vid_path=imFolder_path+'\video')
+    im_to_vid(imFolder_path=imFolder_path+"_MODIFIED",vid_path=imFolder_path+'_MODIFIED\modified_video.avi')
     #subtitle = 'Here is a very long string of text in order to test how the subtitle is working out. I want to make sure that the line properly splits in two.'
     #write_subtitle('/Users/brune/PycharmProjects/Trenholm_Mice/behavior/Data/Video/05-22/BVTEST_SP2_05_22_2024_15_25_29_05_22_2024_15_25_29_MODIFIED/SUBTITLED_2024-05-22-15-25-52-156290_Frame_1.jpg', subtitle, (155, 135, 12), "No Go")
